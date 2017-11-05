@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Livros e Faces</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/chatList.css">
+    <link rel="stylesheet" href="./css/contactArea.css">
+    <link rel="stylesheet" href="./css/friendList.css">
+    <link rel="stylesheet" href="./css/siteHeader.css">
+    <link rel="stylesheet" href="./css/timeline.css">
+    <link rel="stylesheet" href="./css/notificationPopUp.css">
+    <link rel="stylesheet" href="./css/newItemLabel.css">
+</head>
+<body>
+    <header class="siteHeader container clearfix">
+        <h1 class="siteHeader__logo">
+           Chat 
+        </h1>
+        <ul class="siteHeader__infos">
+            <li class="siteHeader__info siteHeader__info--messages newItemLabel" data-count="0">
+                <button class="siteHeader__button">
+                    <svg class="siteHeader__icon siteHeader__icon--white" viewBox="0 0 24 24">
+                        <path d="M17,12V3A1,1 0 0,0 16,2H3A1,1 0 0,0 2,3V17L6,13H16A1,1 0 0,0 17,12M21,6H19V15H6V17A1,1 0 0,0 7,18H18L22,22V7A1,1 0 0,0 21,6Z" />
+                    </svg>
+                </button>
+            </li>
+        </ul>
+    </header>
+
+    <section class="timeline container">
+        <article class="timeline__post">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo fuga beatae odio repellat aperiam dolorem facilis, tempore nesciunt dignissimos necessitatibus ad blanditiis fugiat mollitia, exercitationem esse perferendis doloremque dolores laborum.
+        </article>
+    </section>
+
+    <aside class="contactArea">
+        <ul class="contactArea__item friendList">
+            <li class="friendList__item">
+                <a href="#" class="friendList__wrap">
+                    <img class="friendList__itemPhoto" src="https://placehold.it/32x32" alt="">
+                    <span class="friendList__itemName">Thiago Andrade</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="contactArea__item chatList">
+            <li class="chatList__item">
+                <div class="chatList__wrap">
+                    <div class="chatList__itemHeader">
+                        <span class="chatList__itemFriendName">Thiago Andrade</span>
+                        <button class="chatList__itemCloseChat">
+                            <svg class="chatList__itemIcon" viewBox="0 0 24 24">
+                                <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="chatList__itemMessagesArea">
+                        <ul class="chatList__messageWrap clearfix">
+                            <li class="chatList__message chatList__message--friend">Friend message</li>
+                            <li class="chatList__message chatList__message--my">My Message</li> 
+                            <li class="chatList__message chatList__message--my">My Message</li> 
+                        </ul>
+                    </div>
+                    <div class="chatList__itemNewMessage">
+                        <textarea class="chatList__itemTextbox" placeholder="Digite uma mensagem..."></textarea>
+                        <button class="chatList__itemButton">
+                            <svg class="chatList__itemTextAreaIcon" viewBox="0 0 24 24">
+                                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="notificationPopUp">
+        Nova Mensagem!
+    </div>
+
+    <script src="./js/scripts.js"></script>
+</body>
+</html>

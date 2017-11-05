@@ -1,0 +1,113 @@
+.chatList {
+    position: fixed;
+    right: calc(var(--contactArea--width) + 2%);
+    bottom: 0;
+}
+
+.chatList__item {
+    width: 260px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+}
+
+.chatList__itemHeader {
+    border-radius: 4px 4px 0 0;
+    background: #f6f7f9;
+    padding: 0 8px;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .20);
+}
+
+    .chatList__itemFriendName {
+        font-size: 12px;
+        line-height: 26px;
+    }
+
+    .chatList__itemCloseChat {
+        border: 0;
+        background: transparent;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+    }
+    .chatList__itemIcon {
+        width: 20px;
+        height: 20px;
+    }    
+
+.chatList__itemMessagesArea {
+    overflow: auto;
+    height: 220px;
+    border-bottom: 1px solid #ccc;
+    background: #fff;
+}
+
+.chatList__itemNewMessage {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    position: relative;
+}
+
+    .chatList__itemTextbox {
+        height: 100%;
+        border: 0;
+        width: 100%;
+        padding: 8px;
+        padding-right: 48px;        
+    }
+
+    .chatList__itemButton {
+        border-radius: 50%;
+        border: 0;
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        margin: auto;
+        top: 8px;
+        bottom: 8px;
+        right: 8px;
+        transition: .3s;
+    }
+    .chatList__itemButton:hover,
+    .chatList__itemButton:focus {
+        opacity: .5;
+    }
+
+    .chatList__itemTextAreaIcon {
+        width: 20px;
+        height: 20px;
+        fill: #ffffff;
+        transform: translate(2px);
+    }
+
+    .chatList__messageWrap {
+        position: relative;
+        list-style: none;
+        margin: 8px;
+        padding: 0;
+    }
+    .chatList__message {
+        width: 80%;
+        float: left;
+        background: #eee;
+        margin-top: 8px;
+        border-radius: 0 12px 12px 0;
+        padding: 4px;
+        font-size: 12px;
+    }
+    .chatList__message--my {
+        float: right;
+        border-radius: 12px 0 0 12px;
+        background: #417fff;
+        color: #fff;
+    }
+    .chatList__message--my + .chatList__message--my {
+        margin-top: 2px;
+    }

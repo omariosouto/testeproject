@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --baseBg: #e9ebee;
+    --contactArea--width: 15%;
+    --container--width: calc(var(--contactArea--width) + 5%);
+}
+
+body {
+    background-color: var(--baseBg);
+}
+
+.container {
+    padding: 0 var(--container--width);
+}
+
+
+.clearfix:after {
+    content: "";
+    clear: both;
+    display: table;
+    width: 100%;
+}

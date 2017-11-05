@@ -1,0 +1,43 @@
+.siteHeader {
+    background: #4367b1;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .20);
+}
+
+.siteHeader__logo {
+    float: left;
+    color: #ffffff; 
+    font-size: 26px;
+}
+
+.siteHeader__infos {
+    float: right;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+.siteHeader__info {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.siteHeader__button {
+    background: none;
+    border: 0;
+    padding: 0; 
+    transition: .3s;
+}
+.siteHeader__button:hover,
+.siteHeader__button:focus {
+    opacity: .3;
+}
+
+.siteHeader__icon {
+    width: 26px;
+    height: 26px;
+}
+.siteHeader__icon--white {
+    fill: #ffffff;
+}

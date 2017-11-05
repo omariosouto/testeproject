@@ -1,0 +1,11 @@
+.newItemLabel:after {
+    content: attr(data-count);
+    position: absolute;
+    bottom: 0;
+    right: 2%;
+    padding: 1px 2px;
+    background: #df5436;
+    border-radius: 3px;
+    color: #ffffff;
+    pointer-events: none;
+}

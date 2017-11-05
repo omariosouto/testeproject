@@ -1,0 +1,25 @@
+.friendList {}
+
+.friendList__wrap {
+    text-decoration: none;
+    padding: 8px;
+    display: block;
+    transition: .3s;
+    position: relative;
+}
+.friendList__wrap:hover,
+.friendList__wrap:focus {
+    opacity: .3;
+}
+
+.friendList__itemPhoto {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.friendList__itemName {
+    color: #333;
+    display: inline-block;
+    vertical-align: middle;
+}
