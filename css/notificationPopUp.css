@@ -7,9 +7,22 @@
     background: #212121;
     color: #FFF;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .20);
-    transition: .5;
+    transition: .5 ease-in-out;
+    animation: toast 3s ease forwards;
+}
+
+@keyframes toast {
+	0%, 100% {
+		opacity: 0;
+		transform: translateY(100%)
+	}
+	10%, 90% {
+		opacity: 1;
+		transform: translateY(0%)
+	}
 }
 
 .notificationPopUp--remove--remove {
     transform: translate(-400px);
 }
+

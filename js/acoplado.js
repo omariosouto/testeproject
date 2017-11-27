@@ -1,15 +1,25 @@
 // Ajax Emulado
+const randomContent = [
+    'Falae, sucesso?',
+    'Como ta sua familia?',
+    'E as namorada?',
+    'Sucessinho?'
+]
+function getRandom(max) {
+    return Math.ceil(Math.random() * (max - 0) + 0)
+}
 document.querySelector('body').addEventListener('keypress', (e) => {
     if(e.key == '=') {
-        console.log('NEW_MESSAGE')
+        console.log('[NEW_MESSAGE]')
 
         Chat.newMessage({
             user: 'Thiago Andrade',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit debitis corporis temporibus sed eligendi doloremque, nulla aut mollitia, blanditiis aperiam qui dolores vero veniam doloribus quisquam ad voluptates facere. Illum.'
+            content: randomContent[getRandom(randomContent.length - 1)],  
+            from: 'others'
         })
     }
 })
-
+// Morre aqui
 
 
 // ChatList.js
@@ -26,19 +36,27 @@ document.querySelector('body').addEventListener('keypress', (e) => {
     
     function addMessageToMessagesArea({ content }) {
         const $element = createMessageElement(content)
-        $chatMessagesArea.appendChild($element)
+        $chatMessagesArea
+            .querySelector('.chatList__messageWrap')
+            .appendChild($element)
+    }
+
+    function updateScroll() {
+        $chatMessagesArea.scrollTop = $chatMessagesArea.scrollHeight
     }
 
     // Código acoplado da porra
     function newMessage(message) {
         Chat.addMessageToMessagesArea(message)
+        Chat.updateScroll()
         GlobalPopUp.trigger(`Nova Mensagem de: ${message.user}`)
         Header.updateTotalMessages()
     }
 
     window.Chat = {
         addMessageToMessagesArea,
-        newMessage
+        newMessage,
+        updateScroll
     }
 })()
 
@@ -54,9 +72,9 @@ document.querySelector('body').addEventListener('keypress', (e) => {
         $element.textContent = popUpContent
         $globalPopUp.appendChild($element)
 
-        setTimeout(() => {
+        $element.addEventListener('animationend', () => {
             $element.remove()
-        }, 1000)
+        })
     }
 
     window.GlobalPopUp = {
