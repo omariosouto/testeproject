@@ -1,24 +1,7 @@
-// Ajax Emulated
-document.querySelector('body').addEventListener('keypress', (e) => {
-    if(e.key == '=') {
-        console.log('NEW_MESSAGE')
-
-        PubSub.publish('NEW_MESSAGE', {
-            user: 'Thiago Andrade',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit debitis corporis temporibus sed eligendi doloremque, nulla aut mollitia, blanditiis aperiam qui dolores vero veniam doloribus quisquam ad voluptates facere. Illum.'
-        })
-    }
-})
-
 // ChatList.js
 ;(() => {
     'use strict'
     const $chatMessagesArea = document.querySelector('.chatList__itemMessagesArea')
-    const $chatNewMessage = document.querySelector('.chatList__itemNewMessage')
-
-    $chatNewMessage.addEventListener('submit', (event) => {
-        event.preventDefault()
-    })
 
     function createMessageElement(content) {
         const $element = document.createElement('li')
@@ -26,16 +9,33 @@ document.querySelector('body').addEventListener('keypress', (e) => {
         $element.textContent = content
         return $element
     }
-    function addMessageToMessagesArea(channel, { content }) {
-        const $element = createMessageElement(content)
-        $chatMessagesArea.appendChild($element)
+    
+    function addMessageToMessagesArea(message) {
+        const $element = createMessageElement(message.content)
+        $chatMessagesArea
+            .querySelector('.chatList__messageWrap')
+            .appendChild($element)
     }
 
-    window.ChatList = {
-        addMessageToMessagesArea
+    function updateScroll() {
+        $chatMessagesArea.scrollTop = $chatMessagesArea.scrollHeight
     }
 
-    PubSub.subscribe('NEW_MESSAGE', ChatList.addMessageToMessagesArea)
+    // Código acoplado da porra
+    // function newMessage(message) {
+    //     Chat.addMessageToMessagesArea(message)
+    //     Chat.updateScroll() // Vem depois
+    //     GlobalPopUp.triggerPopUp(message, 'NEW_MESSAGE')
+    //     Header.updateTotalMessages()
+    // }
+
+    window.Chat = {
+        addMessageToMessagesArea,
+        updateScroll
+    }
+    
+    PubSub.subscribe('NEW_MESSAGE', Chat.addMessageToMessagesArea)
+    PubSub.subscribe('NEW_MESSAGE', Chat.updateScroll)
 })()
 
 
@@ -44,26 +44,29 @@ document.querySelector('body').addEventListener('keypress', (e) => {
     'use strict'    
     const $globalPopUp = document.querySelector('.globalPopUp') 
     
-    function trigger(channel, message) {
-        const popUpContent = `Nova Mensagem de: ${message.user}`
-
+    function createPopUpElement() {
         const $element = document.createElement('div')
         $element.classList.add('notificationPopUp')
-        $element.textContent = popUpContent
+        $element.textContent = 'Você tem novas atualizações :)'
+        return $element
+    }
+
+    function triggerPopUp(infoObj, type) {
+        const $element = createPopUpElement()
+
+        if(type === 'NEW_MESSAGE')
+            $element.textContent = `Nova mensagem de: ${infoObj.user}`
+
         $globalPopUp.appendChild($element)
-
-        $element.classList.add('notificationPopUp--remove')
-
-        setTimeout(() => {
+        $element.addEventListener('animationend', () => {
             $element.remove()
-        }, 1000)
+        })
     }
 
     window.GlobalPopUp = {
-        trigger
+        triggerPopUp
     }
-
-    PubSub.subscribe('NEW_MESSAGE', GlobalPopUp.trigger)
+    PubSub.subscribe('NEW_MESSAGE', GlobalPopUp.triggerPopUp)
 })()
 
 
@@ -71,7 +74,7 @@ document.querySelector('body').addEventListener('keypress', (e) => {
 ;(() => {
     'use strict'  
     const $messages  = document.querySelector('.siteHeader__info--messages')
-    
+
     function updateTotalMessages() {
         const messagesCount = $messages.dataset.count
         $messages.dataset.count = 1 + new Number(messagesCount)
@@ -83,3 +86,12 @@ document.querySelector('body').addEventListener('keypress', (e) => {
 
     PubSub.subscribe('NEW_MESSAGE', Header.updateTotalMessages)
 })()
+
+
+
+
+
+
+
+
+

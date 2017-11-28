@@ -102,12 +102,12 @@
         padding: 4px;
         font-size: 12px;
     }
-    .chatList__message--my {
+    .chatList__message--me {
         float: right;
         border-radius: 12px 0 0 12px;
         background: #417fff;
         color: #fff;
     }
-    .chatList__message--my + .chatList__message--my {
+    .chatList__message--me + .chatList__message--me {
         margin-top: 2px;
     }

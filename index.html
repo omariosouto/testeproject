@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Livros e Faces</title>
+    <title>Acoplamento, Mensageria e Redux</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/chatList.css">
     <link rel="stylesheet" href="./css/contactArea.css">
@@ -59,9 +59,8 @@
                     </div>
                     <div class="chatList__itemMessagesArea">
                         <ul class="chatList__messageWrap clearfix">
-                            <li class="chatList__message chatList__message--friend">Mensagem de um Brother</li>
-                            <li class="chatList__message chatList__message--my">Daew</li> 
-                            <li class="chatList__message chatList__message--my">Blz?</li> 
+                            <li class="chatList__message chatList__message--me">Daew</li> 
+                            <li class="chatList__message chatList__message--me">Blz?</li> 
                         </ul>
                     </div>
                     <form class="chatList__itemNewMessage">
@@ -84,11 +83,14 @@
     </section>
     
     <!-- Libs -->
-    <!-- <script src="./js/lib/pubsub.js"></script> -->
+    <!-- <script src="./lib/pubsub.js"></script> -->
+    <script src="./lib/redux.js"></script>
+    <script src="./lib/ajaxemulated.js"></script>
 
     <!-- App -->
-    <script src="./js/acoplado.js"></script>
+    <!-- <script src="./js/acoplado.js"></script> -->
     <!-- <script src="./js/pubsub.js"></script> -->
+    <script src="./js/redux.js"></script>
 
 
 </body>

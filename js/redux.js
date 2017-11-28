@@ -10,8 +10,12 @@
         return $element
     }
     
-    function addMessageToMessagesArea(message) {
-        const $element = createMessageElement(message.content)
+    function addMessageToMessagesArea() { // para de passar o objeto da mensagem e pego do estado
+        // Acessa o estado
+        const messageListSize = store.getState().messages.length - 1
+        const content = store.getState().messages[messageListSize].content
+
+        const $element = createMessageElement(content)
         $chatMessagesArea
             .querySelector('.chatList__messageWrap')
             .appendChild($element)
@@ -22,18 +26,22 @@
     }
 
     // Código acoplado da porra
-    function newMessage(message) {
-        Chat.addMessageToMessagesArea(message)
-        Chat.updateScroll() // Vem depois
-        GlobalPopUp.triggerPopUp(message, 'NEW_MESSAGE')
-        Header.updateTotalMessages()
-    }
+    // function newMessage(message) {
+    //     Chat.addMessageToMessagesArea(message)
+    //     Chat.updateScroll() // Vem depois
+    //     GlobalPopUp.triggerPopUp(message, 'NEW_MESSAGE')
+    //     Header.updateTotalMessages()
+    // }
 
     window.Chat = {
         addMessageToMessagesArea,
-        newMessage,
         updateScroll
     }
+    
+    // PubSub.subscribe('NEW_MESSAGE', Chat.addMessageToMessagesArea)
+    // PubSub.subscribe('NEW_MESSAGE', Chat.updateScroll)
+    store.subscribe(Chat.addMessageToMessagesArea)
+    store.subscribe(Chat.updateScroll)
 })()
 
 
@@ -49,7 +57,12 @@
         return $element
     }
 
-    function triggerPopUp(infoObj, type) {
+    function triggerPopUp() { // não recebe mais parametros (infoObj, type)
+        // acessa o estado
+        const messageListSize = store.getState().messages.length - 1
+        const infoObj = store.getState().messages[messageListSize]
+        const type = infoObj.type
+        
         const $element = createPopUpElement()
 
         if(type === 'NEW_MESSAGE')
@@ -64,6 +77,8 @@
     window.GlobalPopUp = {
         triggerPopUp
     }
+    // PubSub.subscribe('NEW_MESSAGE', GlobalPopUp.triggerPopUp)
+    store.subscribe(GlobalPopUp.triggerPopUp)
 })()
 
 
@@ -73,20 +88,20 @@
     const $messages  = document.querySelector('.siteHeader__info--messages')
 
     function updateTotalMessages() {
-        const messagesCount = $messages.dataset.count
-        $messages.dataset.count = 1 + new Number(messagesCount)
+        //const messagesCount = $messages.dataset.count
+        //$messages.dataset.count = 1 + new Number(messagesCount)
+
+        $messages.dataset.count = store.getState().messages.length
+        // Pega valor do state do store
     }
 
     window.Header = {
         updateTotalMessages
     }
+
+    //PubSub.subscribe('NEW_MESSAGE', Header.updateTotalMessages)
+    store.subscribe(Header.updateTotalMessages) // Cadastra a função
 })()
-
-
-
-
-
-
 
 
 
